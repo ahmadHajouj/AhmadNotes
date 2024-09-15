@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".CreateNoteActivity">
+
+    <TextView
+        android:id="@+id/createNoteTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="create note."
+        android:textSize="26dp"
+        android:textColor="@color/secondary"
+        />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="date time"
+        android:textColor="@color/primary"
+        android:layout_below="@id/createNoteTitle"
+        />
+
+    <ImageView
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_done_24"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        />
+    <EditText
+        android:id="@+id/noteTitle"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:hint="Write The Note Title"
+        android:padding="15dp"
+        android:textSize="20dp"
+        android:layout_below="@id/time"
+        android:background="@drawable/primary_border"
+        android:maxLines="1"
+        />
+    <TextView
+        android:id="@+id/noteTitleWorning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/noteTitle"
+        android:textColor="#FF0000"
+        />
+
+    <EditText
+        android:id="@+id/mainEditText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:hint="Write The Note "
+        android:gravity="top"
+        android:padding="15dp"
+        android:textSize="20dp"
+        android:layout_below="@id/noteTitleWorning"
+        android:background="@drawable/primary_border"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        />
+    <TextView
+        android:id="@+id/mainEditTextWorning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:textColor="#FF0000"
+        />
+
+</RelativeLayout>
