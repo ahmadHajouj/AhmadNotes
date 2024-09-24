@@ -1,4 +1,4 @@
-package com.example.ahmadnotes
+package com.example.ahmadnotes.Model
 
 data class Request(
     val abbreviation : String,

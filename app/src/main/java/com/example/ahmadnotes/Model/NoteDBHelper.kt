@@ -1,4 +1,4 @@
-package com.example.ahmadnotes
+package com.example.ahmadnotes.Model
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
@@ -6,7 +6,8 @@ import android.database.sqlite.SQLiteOpenHelper
 import androidx.core.content.contentValuesOf
 
 class NoteDBHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null,
-    DATABASE_VERSION) {
+    DATABASE_VERSION
+) {
 
     companion object{
         private const val DATABASE_NAME = "notesapp"
@@ -27,7 +28,7 @@ class NoteDBHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, n
         onCreate(db)
     }
 
-    fun insertNote (note :Note) {
+    fun insertNote (note : Note) {
         val db = writableDatabase
         val value = contentValuesOf().apply {
             put(COLUMN_TITLE, note.title)
@@ -58,7 +59,7 @@ class NoteDBHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, n
         return notesList
     }
 
-    fun UpdateNote(note:Note){
+    fun UpdateNote(note: Note){
         val db = writableDatabase
         val values = contentValuesOf().apply {
             put(COLUMN_TITLE, note.title)
@@ -69,7 +70,7 @@ class NoteDBHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, n
         db.close()
     }
 
-    fun getNoteById(noteId: Int):Note{
+    fun getNoteById(noteId: Int): Note {
         val db = readableDatabase
         val query = "SELECT * FROM $TABLE_NAME WHERE $COLUMN_ID = $noteId"
         val cursor = db.rawQuery(query, null)
