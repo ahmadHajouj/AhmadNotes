@@ -1,28 +1,38 @@
 package com.example.ahmadnotes.Model
 
-import com.google.gson.Gson
-import java.io.InputStreamReader
-import java.net.HttpURLConnection
-import java.net.URL
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+
 
 class DatetimeRepository {
 
-     fun fetchDateTime() :String? {
-            val url = URL("https://worldtimeapi.org/api/Asia/Riyadh")
-            val connection = url.openConnection() as HttpURLConnection
+    fun fetchDateTime(callback: (String?) -> Unit) {
 
-            if (connection.responseCode == 200){
-                val inputSystem = connection.inputStream
-                val inputStreamReader = InputStreamReader(inputSystem, "UTF-8",)
-                val req = Gson().fromJson(inputStreamReader, Request::class.java)
-                inputStreamReader.close()
-                inputSystem.close()
-                return req.datetime.substring(0..15).replace('T', ' ')
-            }else{
-                return null
+        val api = Retrofit.Builder()
+            .baseUrl("https://worldtimeapi.org/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(Datetime::class.java)
+
+        api.getDatetime().enqueue(object : Callback<Request> {
+            override fun onResponse(call: Call<Request>, response: Response<Request>) {
+                if (response.isSuccessful) {
+                    response.body()?.let {
+                        val theDatetime = it.datetime.substring(0..15).replace('T', ' ')
+                        callback(theDatetime)
+                    } ?: callback(null)
+                } else {
+                    callback(null)
+                }
             }
 
+            override fun onFailure(call: Call<Request>, t: Throwable) {
+                callback(null)
+            }
+        })
+
     }
-
-
 }

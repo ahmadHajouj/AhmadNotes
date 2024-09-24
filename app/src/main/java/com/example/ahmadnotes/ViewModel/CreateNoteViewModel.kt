@@ -25,16 +25,11 @@ class CreateNoteViewModel(
     val theNoteError: LiveData<String?> = _theNoteError
 
 
-
     fun fetchDateTime() {
-        viewModelScope.launch(Dispatchers.IO) {
-            val fetchedDatetime = datetimeRepository.fetchDateTime()
-            fetchedDatetime?.let {
-                _dateTime.postValue(it)
-            }
+        datetimeRepository.fetchDateTime { fetchedDatetime ->
+            _dateTime.postValue(fetchedDatetime ?: "Error fetching time")
         }
     }
-
 
     fun validTitle(titleText:String): Boolean {
         if (titleText.isEmpty() || titleText == "") {
