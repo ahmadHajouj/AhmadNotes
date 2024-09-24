@@ -7,13 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.ahmadnotes.Model.DatetimeRepository
 import com.example.ahmadnotes.Model.Note
 import com.example.ahmadnotes.Model.NoteRepository
-import com.example.ahmadnotes.Model.Request
-import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.io.InputStreamReader
-import java.net.HttpURLConnection
-import java.net.URL
 
 class CreateNoteViewModel(
     private val repository: NoteRepository,
