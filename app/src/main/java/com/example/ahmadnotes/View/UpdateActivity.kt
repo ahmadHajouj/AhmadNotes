@@ -2,30 +2,24 @@ package com.example.ahmadnotes.View
 
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.example.ahmadnotes.Model.Note
-import com.example.ahmadnotes.Model.NoteRepository
 import com.example.ahmadnotes.ViewModel.UpdateViewModel
-import com.example.ahmadnotes.ViewModel.UpdateViewModelFactory
 import com.example.ahmadnotes.databinding.ActivityUpdateBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class UpdateActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityUpdateBinding
-    private lateinit var updateViewModel: UpdateViewModel
+    private val updateViewModel: UpdateViewModel by viewModels()
     private var noteId = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityUpdateBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        val repository = NoteRepository(this)
-        val factory = UpdateViewModelFactory(repository)
-        updateViewModel = ViewModelProvider(this, factory).get(UpdateViewModel::class.java)
-
-
 
         noteId = intent.getIntExtra("note_id", -1)
         if (noteId == -1){

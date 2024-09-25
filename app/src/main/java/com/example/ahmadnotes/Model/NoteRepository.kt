@@ -1,9 +1,11 @@
 package com.example.ahmadnotes.Model
 
 import android.content.Context
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
 
-class NoteRepository(context: Context) {
+class NoteRepository @Inject constructor(@ApplicationContext private val context: Context) {
     private val dbHelper = NoteDBHelper(context)
 
     fun getAllNotes(): List<Note> {

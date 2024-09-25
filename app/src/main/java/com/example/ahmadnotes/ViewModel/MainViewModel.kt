@@ -6,10 +6,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ahmadnotes.Model.Note
 import com.example.ahmadnotes.Model.NoteRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel(private val repository: NoteRepository): ViewModel() {
+@HiltViewModel
+class MainViewModel @Inject constructor(private val repository: NoteRepository): ViewModel() {
 
     private val _notes = MutableLiveData<List<Note>>()
     val note :LiveData<List<Note>> get() = _notes

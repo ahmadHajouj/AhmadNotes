@@ -7,10 +7,13 @@ import androidx.lifecycle.viewModelScope
 import com.example.ahmadnotes.Model.DatetimeRepository
 import com.example.ahmadnotes.Model.Note
 import com.example.ahmadnotes.Model.NoteRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class CreateNoteViewModel(
+@HiltViewModel
+class CreateNoteViewModel @Inject constructor(
     private val repository: NoteRepository,
     private val datetimeRepository: DatetimeRepository
     ) : ViewModel() {

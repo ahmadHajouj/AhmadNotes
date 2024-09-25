@@ -4,18 +4,13 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
 
-class DatetimeRepository {
+class DatetimeRepository @Inject constructor(private val retrofit: Retrofit) {
 
     fun fetchDateTime(callback: (String?) -> Unit) {
-
-        val api = Retrofit.Builder()
-            .baseUrl("https://worldtimeapi.org/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(Datetime::class.java)
+        val api = retrofit.create(Datetime::class.java)
 
         api.getDatetime().enqueue(object : Callback<Request> {
             override fun onResponse(call: Call<Request>, response: Response<Request>) {
